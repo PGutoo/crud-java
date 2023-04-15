@@ -26,7 +26,7 @@ public class CrudController {
         return cadastroUsuarioService.cadastrarUsuario(usuario);
     }
 
-    //TODO Consultar um usuario por id
+    //TODO Consultar um usuario por id.
     @GetMapping("/consultar/{id}")
     public ResponseEntity<Object> consultarUsuario(@PathVariable String id){
         return ResponseEntity.status(HttpStatus.CREATED).body(cadastroUsuarioService.consultarPeloId(id));
