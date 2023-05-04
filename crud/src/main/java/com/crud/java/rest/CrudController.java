@@ -9,6 +9,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/crud")
@@ -19,6 +20,15 @@ public class CrudController {
 
     @Autowired
     private CadastroUsuarioRepository cadastroUsuarioRepository;
+
+    //Chama API Externa
+    @GetMapping("/externa")
+    public String chamarApiExterna(){
+        String uri = "https://api.adviceslip.com/advice";
+        RestTemplate restTemplate = new RestTemplate();
+        String result = restTemplate.getForObject(uri, String.class);
+        return result;
+    }
 
     //TODO Cadastrar um Usuario
     @PostMapping("/cadastrar")
