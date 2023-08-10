@@ -10,7 +10,7 @@ public class UsuarioMapperConverter {
     public UsuarioEntity conversorEntidade(Usuario usuario) {
 
         UsuarioEntity entidade = UsuarioEntity.builder()
-                .email(usuario.getEmail())
+                .email(usuario.getEmail()) //Insere o valor da requisição no campo da entidade
                 .id(usuario.getId())
                 .nome(usuario.getNome())
                 .cpfCnpj("1")
