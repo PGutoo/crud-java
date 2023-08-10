@@ -1,4 +1,4 @@
-package com.crud.java.application.model.mapper;
+package com.crud.java.application.mapper;
 
 import com.crud.java.application.model.Usuario;
 import com.crud.java.application.model.entity.UsuarioEntity;
@@ -10,11 +10,10 @@ public class UsuarioMapperConverter {
     public UsuarioEntity conversorEntidade(Usuario usuario) {
 
         UsuarioEntity entidade = UsuarioEntity.builder()
-                .idade(usuario.getIdade())
                 .email(usuario.getEmail())
                 .id(usuario.getId())
                 .nome(usuario.getNome())
-                .cpfCnpj(usuario.getCpfCnpj())
+                .cpfCnpj("1")
                 .build();
 
         return entidade;

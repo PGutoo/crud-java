@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CadastroUsuarioRepository extends JpaRepository<UsuarioEntity, String> {
+public interface UsuarioRepository extends JpaRepository<UsuarioEntity, String> {
 
     UsuarioEntity save(Usuario usuario);
     Optional<UsuarioEntity> findById(String id);

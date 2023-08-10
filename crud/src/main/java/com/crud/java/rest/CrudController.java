@@ -2,8 +2,8 @@ package com.crud.java.rest;
 
 import com.crud.java.application.model.Usuario;
 import com.crud.java.application.model.entity.UsuarioEntity;
-import com.crud.java.repository.CadastroUsuarioRepository;
-import com.crud.java.service.CadastroUsuarioService;
+import com.crud.java.repository.UsuarioRepository;
+import com.crud.java.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -16,10 +16,10 @@ import org.springframework.web.client.RestTemplate;
 public class CrudController {
 
     @Autowired
-    private CadastroUsuarioService cadastroUsuarioService;
+    private UsuarioService cadastroUsuarioService;
 
     @Autowired
-    private CadastroUsuarioRepository cadastroUsuarioRepository;
+    private UsuarioRepository cadastroUsuarioRepository;
 
     //Chama API Externa
     @GetMapping("/externa")
@@ -39,7 +39,7 @@ public class CrudController {
     //TODO Consultar um usuario por id.
     @GetMapping("/consultar/{id}")
     public ResponseEntity<Object> consultarUsuario(@PathVariable String id){
-        return ResponseEntity.status(HttpStatus.CREATED).body(cadastroUsuarioService.consultarPeloId(id));
+        return ResponseEntity.status(HttpStatus.OK).body(cadastroUsuarioService.consultarPeloId(id));
     }
 
     //TODO Deletar um usuario
