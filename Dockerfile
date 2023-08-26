@@ -47,7 +47,7 @@ EXPOSE 8080
 # Also, added "RUN apt-get install -y procps" to install procps to check the container logs
 
 RUN apt-get update \
-
+\
 && apt-get install -psy curl
 
 proc# Define the command to run the application
