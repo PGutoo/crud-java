@@ -24,7 +24,7 @@ COPY --from=build /app/target/crud.jar /crud.jar
 
 # Expose port 8080 for the application to listen on
 
-EXPOSE 8080
+EXPOSE 10001
 
 # Install curl to check the application health status
 
@@ -34,4 +34,4 @@ RUN apt-get update \
 
 # Define the command to run the application
 
-CMD ["sh", "-c", "curl -s --retry-connrefused --connect-timeout 5 http://localhost:8080/ || exit 1"]
+CMD ["sh", "-c", "curl -s --retry-connrefused --connect-timeout 5 http://localhost:10001/ || exit 1"]
