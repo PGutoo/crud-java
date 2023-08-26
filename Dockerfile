@@ -50,7 +50,7 @@ RUN apt-get update \
 \
 && apt-get install -psy curl
 
-proc# Define the command to run the application
+#proc # Define the command to run the application
 
 # No changes needed
 
