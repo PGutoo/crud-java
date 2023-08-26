@@ -6,7 +6,7 @@ import org.springframework.http.HttpEntity;
 
 import java.util.Optional;
 
-public interface CadastroUsuarioService {
+public interface UsuarioService {
 
     HttpEntity<Object> cadastrarUsuario(Usuario usuario);
     Optional<UsuarioEntity> consultarPeloId(String id);

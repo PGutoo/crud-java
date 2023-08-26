@@ -2,9 +2,9 @@ package com.crud.java.service.impl;
 
 import com.crud.java.application.model.Usuario;
 import com.crud.java.application.model.entity.UsuarioEntity;
-import com.crud.java.application.model.mapper.UsuarioMapperConverter;
-import com.crud.java.repository.CadastroUsuarioRepository;
-import com.crud.java.service.CadastroUsuarioService;
+import com.crud.java.application.mapper.UsuarioMapperConverter;
+import com.crud.java.repository.UsuarioRepository;
+import com.crud.java.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class CadastroUsuarioServiceImpl implements CadastroUsuarioService {
+public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
-    private CadastroUsuarioRepository cadastroUsuarioRepository;
+    private UsuarioRepository cadastroUsuarioRepository;
 
     @Autowired
     private UsuarioMapperConverter usuarioConverter;
