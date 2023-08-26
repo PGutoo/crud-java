@@ -1,9 +1,3 @@
-2. Fix the typo in the error message. It says "image build failedundefined," but it should be " build failed."
-
-imageHere's the corrected Dockerfile:
-
-```Dockerfile
-
 # Using a base image with Maven and OpenJDK 11 to build the application
 
 FROM maven:3.8.3-openjdk-11-slim AS build
