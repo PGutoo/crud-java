@@ -24,7 +24,7 @@ COPY --from=build /app/target/crud.jar /crud.jar
 
 # Expose port 8080 for the application to listen on
 
-EXPOSE 10001
+#EXPOSE 10001
 
 # Install curl to check the application health status
 
