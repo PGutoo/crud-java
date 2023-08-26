@@ -1,12 +1,18 @@
+2. Fix the typo in the error message. It says "image build failedundefined," but it should be " build failed."
+
+imageHere's the corrected Dockerfile:
+
+```Dockerfile
+
 # Using a base image with Maven and OpenJDK 11 to build the application
 
 FROM maven:3.8.3-openjdk-11-slim AS build
 
 # Set the working directory inside the container
 
-WORKDIR /app Copy
+WORKDIR /app
 
-# the entire application code to the container
+# Copy the entire application code to the container
 
 COPY . .
 
@@ -32,5 +38,4 @@ RUN apt-get update && apt-get install -y curl
 
 # Define the command to run the application
 
-CMD ["sh", "-c", "curl -s --retry10  --connect-timeout 5 http://localhost:8080/ || exit 1"]
-
+CMD ["sh", "-c", "curl -s --retry10 --connect-timeout 5 http://localhost:8080/ || exit 1"]
