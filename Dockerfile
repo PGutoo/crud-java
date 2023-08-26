@@ -4,9 +4,9 @@ FROM maven:3.8.3-openjdk-11-slim AS build
 
 # Set the working directory inside the container
 
-WORKDIR /app
+WORKDIR /app Copy
 
-# Copy the entire application code to the container
+# the entire application code to the container
 
 COPY . .
 
@@ -26,6 +26,11 @@ COPY --from=build /app/target/crud.jar /crud.jar
 
 EXPOSE 8080
 
+# Install curl to check the application health status
+
+RUN apt-get update && apt-get install -y curl
+
 # Define the command to run the application
 
-CMD ["java", "-jar", "/crud.jar"]
+CMD ["sh", "-c", "curl -s --retry10  --connect-timeout 5 http://localhost:8080/ || exit 1"]
+
