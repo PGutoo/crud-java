@@ -13,7 +13,8 @@ public class UsuarioMapperConverter {
                 .email(usuario.getEmail()) //Insere o valor da requisição no campo da entidade
                 .id(usuario.getId())
                 .nome(usuario.getNome())
-                .cpfCnpj("1")
+                .cpfCnpj("1123")
+                .idade(usuario.getIdade())
                 .build();
 
         return entidade;
