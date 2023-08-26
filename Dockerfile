@@ -4,7 +4,7 @@ FROM maven:3.8.3-openjdk-11-slim AS build
 
 # Set the working directory inside the container
 
-WORKDIR /app
+WORKDIR /main
 
 # Copy the entire application code to the container
 
