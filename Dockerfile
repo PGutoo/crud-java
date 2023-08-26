@@ -8,8 +8,8 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:11-jre-slim
 
-COPY --from=build /app/target/hydrofuture.jar /hydrofuture.jar
+COPY --from=build /app/target/crud.jar /crud.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "/hydrofuture.jar"]
+CMD ["java", "-jar", "/crud.jar"]
