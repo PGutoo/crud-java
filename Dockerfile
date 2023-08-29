@@ -1,39 +1,20 @@
-# Using a base image with Maven and OpenJDK 11 to build the application
-
-FROM maven:3.8.3-openjdk-11-slim AS build
+# Use a base image with Java (choose an appropriate version)
+FROM openjdk:11
 
 # Set the working directory inside the container
+WORKDIR /app
 
-WORKDIR /main
+# Copy the Maven project files to the container
+COPY pom.xml .
 
-# Copy the entire application code to the container
+# Download and install the project dependencies
+RUN mvn clean install -DskipTests
 
-COPY . .
+# Copy the application code to the container
+COPY src/ ./src/
 
-# Build the application using Maven, skipping tests
-
-RUN mvn clean package -DskipTests
-
-# Using a different base image with OpenJDK 11 to run the application
-
-FROM openjdk:11-jre-slim
-
-
-WORKDIR /main
-
-# Copy the built JAR file from the previous build stage to the current container
-
-COPY --from=build /main/target/crud.jar /crud.jar
-
-# Expose port 8080 for the application to listen on
-
+# Expose the port that the Spring Boot app will run on
 EXPOSE 8080
 
-# Install curl to check the application health status
-
-RUN apt-get update \
-&& apt-get install -y curl
-
-# Define the command to run the application
-
-CMD ["sh", "-c", "curl -s --retry-connrefused --connect-timeout 5 http://localhost:8080/ || exit 1"]
+# Command to run the Spring Boot application
+CMD ["java", "-jar", "target/your-spring-boot-app.jar"]
