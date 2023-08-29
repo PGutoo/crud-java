@@ -16,7 +16,9 @@ COPY pom.xml ./
 # Fixed error: added "apt-get update" to update the package list before installing maven
 RUN apt-get update && \
     apt-get install -y maven && \
-    mvn clean install -DskipTests
+    mvn clean install -DskipTests && \
+    mvn dependency:purge-local-repository
+
 
 # Copy the application code to the container
 COPY src/ ./src/
