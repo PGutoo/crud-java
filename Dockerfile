@@ -18,6 +18,9 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:11-jre-slim
 
+
+WORKDIR /main
+
 # Copy the built JAR file from the previous build stage to the current container
 
 COPY --from=build /main/target/crud.jar /crud.jar
