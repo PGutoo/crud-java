@@ -5,7 +5,7 @@
 FROM openjdk:11
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /main
 
 # Copy the Maven project files to the container
 # Fixed error: changed "COPY pom.xml ." to "COPY pom.xml ./" to specify the target directory in the container
@@ -17,8 +17,8 @@ COPY pom.xml ./
 RUN apt-get update && \
     apt-get install -y maven && \
     mvn clean install -DskipTests && \
-    mvn dependency:purge-local-repository
-
+    mvn dependency:purge-local-repository && \
+    mvn clean package
 
 # Copy the application code to the container
 COPY src/ ./src/
