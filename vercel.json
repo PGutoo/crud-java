@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "src/main/java/com/crud/java/CrudApplication.java", "use": "@vercel/static-build" }
+  ]
+}
