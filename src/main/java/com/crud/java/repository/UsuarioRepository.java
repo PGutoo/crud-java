@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, String> {
 
     UsuarioEntity save(UsuarioDTO usuario);
+
     Optional<UsuarioEntity> findById(String id);
 
     void deleteById(String id);

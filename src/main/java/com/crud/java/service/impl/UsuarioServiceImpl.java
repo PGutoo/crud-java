@@ -2,6 +2,7 @@ package com.crud.java.service.impl;
 
 import com.crud.java.application.model.dto.UsuarioDTO;
 import com.crud.java.application.model.entity.UsuarioEntity;
+import com.crud.java.domain.Data;
 import com.crud.java.repository.UsuarioRepository;
 import com.crud.java.service.UsuarioService;
 import org.slf4j.Logger;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,7 +28,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public HttpEntity<Object> cadastrarUsuario(UsuarioDTO usuarioDTO){
+    public ResponseEntity<Object> cadastrarUsuario(UsuarioDTO usuarioDTO){
 
         LOGGER.info("Cadastrando um novo usuário {}", usuarioDTO.getCpfCnpj());
         try {
@@ -41,9 +41,9 @@ public class UsuarioServiceImpl implements UsuarioService {
                         .build();
                 LOGGER.info("Entidade {}", entidadeUsuario);
                 cadastroUsuarioRepository.save(entidadeUsuario);
-                return ResponseEntity.status(HttpStatus.CREATED).body(usuarioDTO);
+                return ResponseEntity.status(HttpStatus.CREATED).body(new Data<>(entidadeUsuario));
             } else {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(usuarioDTO);
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(new Data<>(usuarioDTO));
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

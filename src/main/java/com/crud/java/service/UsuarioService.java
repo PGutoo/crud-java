@@ -3,13 +3,14 @@ package com.crud.java.service;
 import com.crud.java.application.model.dto.UsuarioDTO;
 import com.crud.java.application.model.entity.UsuarioEntity;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UsuarioService {
 
-    HttpEntity<Object> cadastrarUsuario(UsuarioDTO usuario);
+    ResponseEntity<Object> cadastrarUsuario(UsuarioDTO usuario);
     Optional<UsuarioEntity> consultarPeloCpfCnpj(String id);
 
     void deletarUsuario(String id);

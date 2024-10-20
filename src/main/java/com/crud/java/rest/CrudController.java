@@ -36,9 +36,8 @@ public class CrudController {
         return result;
     }
 
-    //TODO Cadastrar um Usuario
     @PostMapping("/cadastrar")
-    public HttpEntity<Object> cadastrarUsuario(@RequestBody UsuarioDTO usuario){
+    public ResponseEntity<Object> cadastrarUsuario(@RequestBody UsuarioDTO usuario){
         LOGGER.info("Cadastrando um novo usuário {}", usuario.getCpfCnpj());
         if(CpfCnpjUtils.isCpfOrCnpjValid(usuario.getCpfCnpj())){
             return cadastroUsuarioService.cadastrarUsuario(usuario);
@@ -47,8 +46,7 @@ public class CrudController {
         }
     }
 
-    //TODO Consultar um usuario por id.
-    @GetMapping("/consultar/{id}")
+    @GetMapping("/consultar/{cpfCnpj}")
     public ResponseEntity<Object> consultarUsuario(@PathVariable String cpfCnpj){
         if(CpfCnpjUtils.isCpfOrCnpjValid(cpfCnpj)) {
             return ResponseEntity.status(HttpStatus.OK).body(cadastroUsuarioService.consultarPeloCpfCnpj(cpfCnpj));
