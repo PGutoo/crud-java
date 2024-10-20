@@ -28,24 +28,22 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public HttpEntity<Object> cadastrarUsuario(UsuarioDTO usuario){
+    public HttpEntity<Object> cadastrarUsuario(UsuarioDTO usuarioDTO){
 
-        LOGGER.info("Cadastrando um novo usuário {}", usuario.getCpfCnpj());
+        LOGGER.info("Cadastrando um novo usuário {}", usuarioDTO.getCpfCnpj());
         try {
-            UsuarioEntity entidadeUsuario = UsuarioEntity.builder()
-                    .email(usuario.getEmail())
-                    .id(UUID.randomUUID().toString())
-                    .nome(usuario.getNome())
-                    .cpfCnpj(usuario.getCpfCnpj())
-                    .idade(usuario.getIdade())
-                    .build();
-
-            if (cadastroUsuarioRepository.findById(entidadeUsuario.getId()).isEmpty()){
+            if (cadastroUsuarioRepository.findById(usuarioDTO.getCpfCnpj()).isEmpty()){
+                UsuarioEntity entidadeUsuario = UsuarioEntity.builder()
+                        .email(usuarioDTO.getEmail())
+                        .nome(usuarioDTO.getNome())
+                        .cpfCnpj(usuarioDTO.getCpfCnpj())
+                        .idade(usuarioDTO.getIdade())
+                        .build();
                 LOGGER.info("Entidade {}", entidadeUsuario);
                 cadastroUsuarioRepository.save(entidadeUsuario);
-                return ResponseEntity.status(HttpStatus.CREATED).body(entidadeUsuario);
+                return ResponseEntity.status(HttpStatus.CREATED).body(usuarioDTO);
             } else {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(entidadeUsuario);
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(usuarioDTO);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -54,8 +52,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<UsuarioEntity> consultarPeloId(String id) {
-        return cadastroUsuarioRepository.findById(id);
+    public Optional<UsuarioEntity> consultarPeloCpfCnpj(String cpfCnpj) {
+        //TODO Implementar tratamento
+        return cadastroUsuarioRepository.findById(cpfCnpj);
     }
 
     @Override
@@ -68,7 +67,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     }
 
-//    @Override
 //    public List<Double> listaTemperatura(List<Double> temperaturas) {
 //        List<Double> highTemperature = new ArrayList<>();
 //        for (Double temp : temperaturas) {

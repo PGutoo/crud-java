@@ -2,8 +2,12 @@ package com.crud.java.rest;
 
 import com.crud.java.application.model.dto.UsuarioDTO;
 import com.crud.java.application.model.entity.UsuarioEntity;
+import com.crud.java.domain.CpfCnpjUtils;
+import com.crud.java.domain.Data;
 import com.crud.java.repository.UsuarioRepository;
 import com.crud.java.service.UsuarioService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -14,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/crud")
 public class CrudController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CrudController.class);
 
     @Autowired
     private UsuarioService cadastroUsuarioService;
@@ -33,13 +39,22 @@ public class CrudController {
     //TODO Cadastrar um Usuario
     @PostMapping("/cadastrar")
     public HttpEntity<Object> cadastrarUsuario(@RequestBody UsuarioDTO usuario){
-        return cadastroUsuarioService.cadastrarUsuario(usuario);
+        LOGGER.info("Cadastrando um novo usuário {}", usuario.getCpfCnpj());
+        if(CpfCnpjUtils.isCpfOrCnpjValid(usuario.getCpfCnpj())){
+            return cadastroUsuarioService.cadastrarUsuario(usuario);
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Data<>("CPF/CNPJ inválido"));
+        }
     }
 
     //TODO Consultar um usuario por id.
     @GetMapping("/consultar/{id}")
-    public ResponseEntity<Object> consultarUsuario(@PathVariable String id){
-        return ResponseEntity.status(HttpStatus.OK).body(cadastroUsuarioService.consultarPeloId(id));
+    public ResponseEntity<Object> consultarUsuario(@PathVariable String cpfCnpj){
+        if(CpfCnpjUtils.isCpfOrCnpjValid(cpfCnpj)) {
+            return ResponseEntity.status(HttpStatus.OK).body(cadastroUsuarioService.consultarPeloCpfCnpj(cpfCnpj));
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Data<>("CPF/CNPJ inválido"));
+        }
     }
 
     //TODO Deletar um usuario

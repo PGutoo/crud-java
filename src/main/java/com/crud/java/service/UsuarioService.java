@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface UsuarioService {
 
     HttpEntity<Object> cadastrarUsuario(UsuarioDTO usuario);
-    Optional<UsuarioEntity> consultarPeloId(String id);
+    Optional<UsuarioEntity> consultarPeloCpfCnpj(String id);
 
     void deletarUsuario(String id);
 

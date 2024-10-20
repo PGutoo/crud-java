@@ -14,13 +14,10 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class UsuarioEntity {
 
-    @Id
-    @Column(name = "ID")
-    private String id;
-
     @Column(name = "NOME")
     private String nome;
 
+    @Id
     @Column(name = "CPFCNPJ")
     private String cpfCnpj;
 
