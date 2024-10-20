@@ -1,6 +1,6 @@
 package com.crud.java.rest;
 
-import com.crud.java.application.model.Usuario;
+import com.crud.java.application.model.dto.UsuarioDTO;
 import com.crud.java.application.model.entity.UsuarioEntity;
 import com.crud.java.repository.UsuarioRepository;
 import com.crud.java.service.UsuarioService;
@@ -32,7 +32,7 @@ public class CrudController {
 
     //TODO Cadastrar um Usuario
     @PostMapping("/cadastrar")
-    public HttpEntity<Object> cadastrarUsuario(@RequestBody Usuario usuario){
+    public HttpEntity<Object> cadastrarUsuario(@RequestBody UsuarioDTO usuario){
         return cadastroUsuarioService.cadastrarUsuario(usuario);
     }
 
