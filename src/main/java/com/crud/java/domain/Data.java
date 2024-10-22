@@ -6,7 +6,15 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class Data<T> {
 
+    @JsonProperty("statusCode")
+    private Integer status;
+
     @JsonProperty("data")
     private T data;
+
+    @JsonProperty("message")
+    private String message;
+
+
 
 }

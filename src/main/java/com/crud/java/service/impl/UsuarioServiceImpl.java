@@ -30,7 +30,6 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public ResponseEntity<Object> cadastrarUsuario(UsuarioDTO usuarioDTO){
 
-        LOGGER.info("Cadastrando um novo usuário {}", usuarioDTO.getCpfCnpj());
         try {
             if (cadastroUsuarioRepository.findById(usuarioDTO.getCpfCnpj()).isEmpty()){
                 UsuarioEntity entidadeUsuario = UsuarioEntity.builder()
@@ -41,11 +40,13 @@ public class UsuarioServiceImpl implements UsuarioService {
                         .build();
                 LOGGER.info("Entidade {}", entidadeUsuario);
                 cadastroUsuarioRepository.save(entidadeUsuario);
-                return ResponseEntity.status(HttpStatus.CREATED).body(new Data<>(entidadeUsuario));
+                return ResponseEntity.status(HttpStatus.CREATED).body(new Data<>(201, entidadeUsuario, "Usuário criado"));
             } else {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body(new Data<>(usuarioDTO));
+                LOGGER.error("Usuário já cadastrado {}", usuarioDTO);
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(new Data<>(409, usuarioDTO, "Usuário já existe"));
             }
         } catch (Exception e) {
+            LOGGER.error("Erro ao cadastrar usuário {}", usuarioDTO, e);
             throw new RuntimeException(e);
         }
 
