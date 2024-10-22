@@ -96,5 +96,30 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:5.3.23" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:2.1.214" level="project" />
+    <orderEntry type="library" name="Maven: org.mapstruct:mapstruct:1.6.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-webflux:2.7.4" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-reactor-netty:2.7.4" level="project" />
+    <orderEntry type="library" name="Maven: io.projectreactor.netty:reactor-netty-http:1.0.23" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-http:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-http2:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver-dns:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-dns:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver-dns-native-macos:osx-x86_64:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver-dns-classes-macos:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport-native-unix-common:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport-classes-epoll:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.projectreactor.netty:reactor-netty-core:1.0.23" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler-proxy:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-socks:4.1.82.Final" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-webflux:5.3.23" level="project" />
+    <orderEntry type="library" name="Maven: io.projectreactor:reactor-core:3.4.23" level="project" />
+    <orderEntry type="library" name="Maven: org.reactivestreams:reactive-streams:1.0.4" level="project" />
   </component>
 </module>
