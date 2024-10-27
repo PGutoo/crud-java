@@ -1,0 +1,23 @@
+application:
+    name: crudjava
+    version: 1.0.0
+
+server:
+    port: 10001
+
+
+spring:
+    h2:
+        console:
+            enabled: true
+            path: /h2
+
+  # Datasource
+    datasource:
+        url: jdbc:h2:file:/home/wolmir/dbh2teset
+        username: sa
+        password:
+        driver-class-name: org.h2.Driver
+    jpa:
+        hibernate:
+            ddl-auto: update
