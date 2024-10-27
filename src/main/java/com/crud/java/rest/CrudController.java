@@ -33,9 +33,9 @@ public class CrudController {
     //Chama API Externa
     @GetMapping("/externa")
     public String chamarApiExterna(){
-        WebClient webClient = WebClient.create("https://api.adviceslip.com");
+        WebClient webClient = WebClient.create("https://roadmap-center-norte.vercel.app");
         return webClient.get()
-                .uri("/advice")
+                .uri("/status")
                 .retrieve()// Envia a requisição e aguarda a resposta
                 .bodyToMono(String.class)// Converte o corpo da resposta para uma String
                 .block();// Para chamadas síncronas, usa block()
