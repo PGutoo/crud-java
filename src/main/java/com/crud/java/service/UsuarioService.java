@@ -11,9 +11,11 @@ import java.util.Optional;
 public interface UsuarioService {
 
     ResponseEntity<Object> cadastrarUsuario(UsuarioDTO usuario);
-    Optional<UsuarioEntity> consultarPeloCpfCnpj(String id);
+    ResponseEntity<Object> consultarPeloCpfCnpj(String cpfCnpj);
 
-    void deletarUsuario(String id);
+    ResponseEntity<Object> listarUsuarios();
+
+    void deletarUsuario(String cpfCnpj);
 
     void editarUsuario(String id, UsuarioDTO usuario);
 

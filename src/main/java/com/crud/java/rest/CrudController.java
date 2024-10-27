@@ -33,9 +33,9 @@ public class CrudController {
     //Chama API Externa
     @GetMapping("/externa")
     public String chamarApiExterna(){
-        WebClient webClient = WebClient.create("https://api.adviceslip.com");
+        WebClient webClient = WebClient.create("https://roadmap-center-norte.vercel.app");
         return webClient.get()
-                .uri("/advice")
+                .uri("/status")
                 .retrieve()// Envia a requisição e aguarda a resposta
                 .bodyToMono(String.class)// Converte o corpo da resposta para uma String
                 .block();// Para chamadas síncronas, usa block()
@@ -44,6 +44,7 @@ public class CrudController {
     @PostMapping("/cadastrar")
     public ResponseEntity<Object> cadastrarUsuario(@RequestBody UsuarioDTO usuario){
         LOGGER.info("Cadastrando um novo usuário {}", usuario.getCpfCnpj());
+
         if(CpfCnpjUtils.isCpfOrCnpjValid(usuario.getCpfCnpj())){
             return cadastroUsuarioService.cadastrarUsuario(usuario);
         }else{
@@ -54,18 +55,25 @@ public class CrudController {
 
     @GetMapping("/consultar/{cpfCnpj}")
     public ResponseEntity<Object> consultarUsuario(@PathVariable String cpfCnpj){
+
+        LOGGER.info("Consultando usuário {}", cpfCnpj);
         if(CpfCnpjUtils.isCpfOrCnpjValid(cpfCnpj)) {
-            return ResponseEntity.status(HttpStatus.OK).body(cadastroUsuarioService.consultarPeloCpfCnpj(cpfCnpj));
+            return cadastroUsuarioService.consultarPeloCpfCnpj(cpfCnpj);
         }else{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Data<>(400,cpfCnpj, "CPF/CNPJ inválido"));
         }
     }
 
+    @GetMapping("/consultar")
+    public ResponseEntity<Object> listarUsuarios(){
+        return cadastroUsuarioService.listarUsuarios();
+    }
+
     //TODO Deletar um usuario
-    @DeleteMapping("/deletar/{id}")
-    public HttpStatus deletarUsuario(@PathVariable String id){
-        cadastroUsuarioService.deletarUsuario(id);
-        return HttpStatus.OK;
+    @DeleteMapping("/deletar/{cpfCnpj}")
+    public ResponseEntity<Object> deletarUsuario(@PathVariable String cpfCnpj){
+        cadastroUsuarioService.deletarUsuario(cpfCnpj);
+        return ResponseEntity.status(HttpStatus.OK).body(new Data<>(200, cpfCnpj,"Usuário deletado"));
     }
 
     //TODO Editar um usuario inserindo somente
