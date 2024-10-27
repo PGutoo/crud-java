@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "src": "CrudApplication.java",
+      "src": "target/CrudApplication.jar",
       "use": "@vercel/java"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "CrudApplication.java"
+      "dest": "target/CrudApplication.jar"
     }
   ]
 }
