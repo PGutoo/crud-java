@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "pom.xml",
+      "src": "CrudApplication.java",
       "use": "@vercel/java"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "pom.xml"
+      "dest": "CrudApplication.java"
     }
   ]
 }
